@@ -1,0 +1,132 @@
+.wk_mu_admin_wrapper table input[type="file"] {
+	opacity: 0;
+	position: absolute;
+	width: 90px;
+}
+.wk_mu_admin_wrapper table .upload-csv-btn {
+	position: relative;
+	cursor: pointer;
+}
+.wk_mu_admin_wrapper table input[type="text"] {
+	padding: 4px 2px;
+	border-color: #aaa;
+}
+.seller-form .wk_mu_admin_wrapper table select {
+	border: none;
+	width: 80%;
+	outline: none;
+	padding: 8px;
+}
+
+.wk_mu_admin_wrapper table select {
+	width: 200px;
+}
+
+.wrap.a {
+	background: #fff;
+  padding: 20px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+.seller-form input[type="text"] {
+	width: 80%;
+}
+
+.seller-form table thead, .seller-form table tfoot {
+	background-color: #5B9DD9;
+	color: #fff;
+}
+
+.seller-form table thead {
+	margin-bottom: 30px;
+}
+
+.seller-form table thead th, .seller-form table tfoot th {
+	padding: 10px 20px;
+}
+.error {
+	color: #ff0000;
+}
+.csv-error {
+	color: #fff;
+  font-size: 17px;
+  background: #DC2F2F;
+  border-left: 10px solid #BB0600;
+  padding-left: 11px;
+  padding: 10px 11px;
+  margin: 20px 0px;
+  font-weight: 700;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.csv-error a {
+	color: #124375;
+}
+.csv-error a:hover {
+	color: #fff;
+}
+.csv-success {
+	color: #fff;
+  font-size: 17px;
+  background: #5B9DD9;
+  border-left: 10px solid #257BCA;
+  padding-left: 11px;
+  padding: 10px 11px;
+  margin: 20px 0px;
+  font-weight: 700;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.front-button {
+	float: right;
+}
+#csv_progress {
+  width: 100%;
+  background-color: #ddd;
+  position: relative;
+}
+
+#csv_progress_bar {
+  height: 20px;
+  border-radius: 20px;
+  background-color: #4CAF50;
+  position: absolute;
+}
+
+.wk-mu-notice {
+  background: #eee;
+  border-left: 4px solid #fff;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+  margin: 5px 0 15px;
+  padding: 1px 12px;
+}
+
+.wk-mu-notice-info {
+    border-left-color: #00a0d2;
+}
+
+.wk-mu-notice p {
+    color: #000;
+    margin: .5em 0;
+    padding: 2px;
+}
+
+.wk-mu-notice-error {
+    border-left-color: #dc3232;
+}
+
+.wk-mu-notice-success {
+    border-left-color: #46b450;
+}
+
+.wk-mu-notice-warning {
+    border-left-color: #ffb900;
+}
+
+.wk_mu_batch_process_wrapper {
+		border: 4px dashed #777;
+		display: none;
+		padding: 10px;
+}
