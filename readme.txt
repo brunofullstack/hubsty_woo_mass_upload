@@ -1,4 +1,4 @@
-==== Hubsty WooCommerce Marketplace Product Mass Upload ====
+==== Hubsty Marketplace Product Mass Upload ====
 Contributors: WebKul, brunofullstack
 Tags: woocommerce, marketplace, product mass upload
 WordPress:
@@ -8,7 +8,7 @@ WooCommerce Version: 3.x
 License: GNU/GPL for more info see license.txt included with plugin
 License URI: http://www.gnu.org/licenseses/gpl-2.0.html
 
-Woocommerce Marketplace Product Mass Upload allows you to uplaod products in mass number using csv.
+Hubsty Woocommerce Marketplace Product Mass Upload allows you to uplaod products in mass number using csv.
 
 == Description ==
 
