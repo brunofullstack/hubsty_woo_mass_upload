@@ -251,7 +251,7 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
                 foreach ( $attribute_name as $key => $value ) {
                     $product_attributes_arr[] = array(
                         'name' => $value,
-                        'value' => $attribute_data,
+                        'value' => $attribute_data[$key],
                         'position' => 1,
                         'is_visible' => 1,
                         'is_variation' => 1,

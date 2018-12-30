@@ -351,8 +351,8 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 	if ( ! empty( $attribute_name ) ) {
 		foreach ( $attribute_name as $key => $value ) {
 			$product_attributes_arr[] = array(
-				'name' => $value,
-				'value' => $attribute_data,
+				'name' => $attribute_name,
+				'value' => $attribute_data[],
 				'position' => 1,
 				'is_visible' => 1,
 				'is_variation' => 1,
