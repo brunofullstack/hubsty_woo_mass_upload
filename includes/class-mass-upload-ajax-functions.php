@@ -190,30 +190,19 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
             $product_type = ($val['product_type']) ? $val['product_type'] : '';
 
             $product_cat = ($val['product_cat']) ? $val['product_cat'] : '';
-            $attribute_name = ($val['attribute_name']) ? $val['attribute_name'] : '';
+            $attr_name = ($val['attribute_name']) ? $val['attribute_name'] : '';
 
-            $attribute_data = ($val['attribute_data']) ? $val['attribute_data'] : '';
+            $attr_data = ($val['attribute_data']) ? $val['attribute_data'] : '';
             $attribute_single = ($val['attribute_single']) ? $val['attribute_single'] : '';
 
-            $color = ($val['color']) ? $val['color'] : '';        
-            $brand = ($val['brand']) ? $val['brand'] : '';
-            $depth = ($val['depth']) ? $val['depth'] : '';
-            $volume = ($val['volume']) ? $val['volume'] : '';
-            $material = ($val['material']) ? $val['material'] : '';
-            $customisable = ($val['customisable']) ? $val['customisable'] : '';
-            $pack_height_cm = ($val['pack_height_cm']) ? $val['pack_height_cm'] : '';
-            $pack_lenght_cm = ($val['pack_lenght_cm']) ? $val['pack_lenght_cm'] : '';
-            $pack_width_cm = ($val['pack_lenght_cm']) ? $val['pack_width_cm'] : '';
-            $pack_weight = ($val['pack_weight']) ? $val['pack_weight'] : '';
-            $eco_friendly = ($val['eco_friendly']) ? $val['breco_friendlyand'] : '';
-            
-            file_put_contents('../../hello22.php', var_export($val, true) . ';' . var_export(debug_backtrace(), true));
-            
             $images_folder = $img_folder;
             $virtual = $product_type == 'virtual' ? 'yes' : 'no';
 
             $simple = $product_type == 'simple' ? 'yes' : 'no';
             $product_categories = explode('|', $product_cat);
+
+            $attribute_name = explode( '|', $attr_name );        
+            $attribute_data = explode( '|', $attr_data );
 
             global $wpdb;
 
@@ -259,14 +248,16 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
             }
 
             if (! empty($attribute_name)) {
-                $product_attributes_arr[] = array (
-                    'name'          => $attribute_name,
-                    'value'         => $attribute_data,
-                    'position'      => 1,
-                    'is_visible'    => 1,
-                    'is_variation'  => 1,
-                    'is_taxonomy'   => 0
-                );
+                foreach ( $attribute_name as $key => $value ) {
+                    $product_attributes_arr[] = array(
+                        'name' => $value,
+                        'value' => $attribute_data,
+                        'position' => 1,
+                        'is_visible' => 1,
+                        'is_variation' => 1,
+                        'is_taxonomy' => 0,
+                    );
+                }
             } else {
                 $product_attributes_arr = array();
             }
@@ -504,19 +495,6 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
 
             $meta_keys['_download_expiry'] = $download_expiry;
 
-            // HUBSTY variables        
-            $meta_keys['_color'] = $color;
-            $meta_keys['_brand'] = $brand;
-            $meta_keys['_customisable'] = $customisable;
-            $meta_keys['_pack_height_cm'] = $pack_height_cm;
-            $meta_keys['_pack_height_cm'] = $pack_height_cm;
-            $meta_keys['_pack_lenght_cm'] = $pack_lenght_cm;
-            $meta_keys['_pack_lenght_cm'] = $pack_lenght_cm;
-            $meta_keys['_pack_weight'] = $pack_weight;
-            $meta_keys['_eco_friendly'] = $eco_friendly;
-
-
-
             if ($virtual) {
                 $meta_keys['_weight'] = '';
 
@@ -580,7 +558,6 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
             $custom_fields = array();
             $place_holders = array();
 
-            file_put_contents('../../hello22.php', var_export($val, true) . ';' . var_export(debug_backtrace(), true));
             $query_string = "INSERT INTO $wpdb->postmeta ( post_id, meta_key, meta_value) VALUES ";
 
             foreach ($meta_keys as $key => $value) {
@@ -589,8 +566,6 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
             }
 
             $query_string .= implode(', ', $place_holders);
-
-            file_put_contents('../../hello25.php', var_export($custom_fields, true));
 
             $wpdb->query($wpdb->prepare("$query_string ", $custom_fields));
 

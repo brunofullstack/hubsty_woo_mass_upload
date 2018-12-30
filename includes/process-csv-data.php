@@ -286,25 +286,11 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 
 	$product_cat = ($val['product_cat']) ? $val['product_cat'] : '';
 
-	$attribute_name = ($val['attribute_name']) ? $val['attribute_name'] : '';
+	$attr_name = ($val['attribute_name']) ? $val['attribute_name'] : '';
 
-	$attribute_data = ($val['attribute_data']) ? $val['attribute_data'] : '';
+	$attr_data = ($val['attribute_data']) ? $val['attribute_data'] : '';
 
 	$attribute_single = ($val['attribute_single']) ? $val['attribute_single'] : '';
-
-	// HUBSTY variables
-
-	$color = ($val['color']) ? $val['color'] : '';
-	$brand = ($val['brand']) ? $val['brand'] : '';
-	$depth = ($val['depth']) ? $val['depth'] : '';
-	$volume = ($val['volume']) ? $val['volume'] : '';
-	$material = ($val['material']) ? $val['material'] : '';
-	$customisable = ($val['customisable']) ? $val['customisable'] : '';
-	$pack_height_cm = ($val['pack_height_cm']) ? $val['pack_height_cm'] : '';
-	$pack_lenght_cm = ($val['pack_lenght_cm']) ? $val['pack_lenght_cm'] : '';
-	$pack_width_cm = ($val['pack_lenght_cm']) ? $val['pack_width_cm'] : '';
-	$pack_weight = ($val['pack_weight']) ? $val['pack_weight'] : '';
-	$eco_friendly = ($val['eco_friendly']) ? $val['breco_friendlyand'] : '';
 
 	$images_folder = $img_folder;
 
@@ -313,6 +299,10 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 	$simple = 'simple' === $product_type ? 'yes' : 'no';
 
 	$product_categories = explode( '|', $product_cat );
+
+	$attribute_name = explode( '|', $attr_name );
+
+	$attribute_data = explode( '|', $attr_data );
 
 	global $wpdb;
 
@@ -359,14 +349,16 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 	}
 
 	if ( ! empty( $attribute_name ) ) {
-		$product_attributes_arr[] = array(
-			'name' => $attribute_name,
-			'value' => $attribute_data,
-			'position' => 1,
-			'is_visible' => 1,
-			'is_variation' => 1,
-			'is_taxonomy' => 0,
-		);
+		foreach ( $attribute_name as $key => $value ) {
+			$product_attributes_arr[] = array(
+				'name' => $value,
+				'value' => $attribute_data,
+				'position' => 1,
+				'is_visible' => 1,
+				'is_variation' => 1,
+				'is_taxonomy' => 0,
+			);
+		}
 	} else {
 		$product_attributes_arr = array();
 	}
@@ -617,17 +609,6 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 
 	$meta_keys['_download_expiry'] = $download_expiry;
 
-	// HUBSTY variables
-	$meta_keys['_color'] = $color;
-	$meta_keys['_brand'] = $brand;
-	$meta_keys['_customisable'] = $customisable;
-	$meta_keys['_pack_height_cm'] = $pack_height_cm;
-	$meta_keys['_pack_height_cm'] = $pack_height_cm;
-	$meta_keys['_pack_lenght_cm'] = $pack_lenght_cm;
-	$meta_keys['_pack_lenght_cm'] = $pack_lenght_cm;
-	$meta_keys['_pack_weight'] = $pack_weight;
-	$meta_keys['_eco_friendly'] = $eco_friendly;
-
 	if ( $virtual ) {
 		$meta_keys['_weight'] = '';
 
@@ -703,8 +684,6 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 	}
 
 	$query_string .= implode( ', ', $place_holders );
-
-	file_put_contents('../../hello24.php', var_export($custom_fields , true));
 
 	$wpdb->query( $wpdb->prepare( "$query_string ", $custom_fields ) );
 
