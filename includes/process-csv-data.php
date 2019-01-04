@@ -688,9 +688,10 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 	$wpdb->query( $wpdb->prepare( "$query_string ", $custom_fields ) );
 
 	if ( ! empty( $product_categories ) ) {
+
 		foreach ( $product_categories as $key => $value ) {
 			if ( $value ) {
-				$idObj = get_term_by( 'slug', $value, 'product_cat' );
+				$idObj = get_term_by( 'name', $value, 'product_cat' );
 
 				if ( $idObj ) {
 					$cat_id = $idObj->term_id;
@@ -698,6 +699,7 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 					$pro_cat_id = array( 'object_id' => $postid, 'term_taxonomy_id' => $cat_id );
 
 					$wpdb->insert( "$wpdb->term_relationships", $pro_cat_id );
+					wp_set_object_terms($postid, $cat_id, 'product_cat');
 				}
 			}
 		}

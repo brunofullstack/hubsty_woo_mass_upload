@@ -572,13 +572,14 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
             if (! empty($product_categories)) {
                 foreach ($product_categories as $key => $value) {
                     if ($value) {
-                        $idObj = get_term_by('slug', $value, 'product_cat');
+                        $idObj = get_term_by('name', $value, 'product_cat');
 
                         if ($idObj) {
                             $cat_id = $idObj->term_id;
                             $pro_cat_id = array( 'object_id' => $postid, 'term_taxonomy_id' => $cat_id);
 
                             $wpdb->insert("$wpdb->term_relationships", $pro_cat_id);
+                            wp_set_object_terms( $postid, $cat_id, 'product_cat' );
                         }
                     }
                 }
