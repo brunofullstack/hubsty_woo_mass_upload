@@ -691,6 +691,12 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 
 		foreach ( $product_categories as $key => $value ) {
 			if ( $value ) {
+
+				wp_insert_term(
+					$value, // the term 
+					'product_cat' // the taxonomy
+				);
+
 				$idObj = get_term_by( 'name', $value, 'product_cat' );
 
 				if ( $idObj ) {
@@ -700,7 +706,7 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 
 					$wpdb->insert( "$wpdb->term_relationships", $pro_cat_id );
 					wp_set_object_terms($postid, $cat_id, 'product_cat');
-				}
+				} 
 			}
 		}
 	}

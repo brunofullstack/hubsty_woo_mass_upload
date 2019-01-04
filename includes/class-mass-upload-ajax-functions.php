@@ -572,6 +572,12 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
             if (! empty($product_categories)) {
                 foreach ($product_categories as $key => $value) {
                     if ($value) {
+
+                        wp_insert_term(
+                            $value, // the term 
+                            'product_cat' // the taxonomy
+                        );
+
                         $idObj = get_term_by('name', $value, 'product_cat');
 
                         if ($idObj) {
