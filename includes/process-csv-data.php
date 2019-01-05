@@ -298,6 +298,8 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 
 	$simple = 'simple' === $product_type ? 'yes' : 'no';
 
+	$tags = ($val['tags']) ? $val['tags'] : '';
+
 	$product_categories = explode( '|', $product_cat );
 
 	$attribute_name = explode( '|', $attr_name );
@@ -709,6 +711,11 @@ function wk_mu_process_csv_data( $val, $author_id, $current, $img_folder, $user_
 				} 
 			}
 		}
+	}
+
+	// Tags
+	if ( ! empty( $tags ) ) {
+		wp_set_object_terms($postid, $tags, 'product_tag');
 	}
 
 	wp_set_object_terms( $postid, $product_type, 'product_type', false );

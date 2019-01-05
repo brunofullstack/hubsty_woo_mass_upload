@@ -195,6 +195,8 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
             $attr_data = ($val['attribute_data']) ? $val['attribute_data'] : '';
             $attribute_single = ($val['attribute_single']) ? $val['attribute_single'] : '';
 
+            $tags = ($val['tags']) ? $val['tags'] : '';
+
             $images_folder = $img_folder;
             $virtual = $product_type == 'virtual' ? 'yes' : 'no';
 
@@ -589,6 +591,11 @@ if ( ! class_exists( 'MP_MU_Ajax_Functions' ) ) {
                         }
                     }
                 }
+            }
+
+            // Tags
+            if ( ! empty( $tags ) ) {
+                wp_set_object_terms($postid, $tags, 'product_tag');
             }
 
             wp_set_object_terms($postid, $product_type, 'product_type', false);
